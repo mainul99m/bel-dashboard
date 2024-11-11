@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class AuthenticationScreen extends StatelessWidget {
-  AuthenticatorController controller = Get.put(AuthenticatorController());
+  final AuthenticatorController controller = Get.put(AuthenticatorController());
   AuthenticationScreen({super.key});
 
   @override

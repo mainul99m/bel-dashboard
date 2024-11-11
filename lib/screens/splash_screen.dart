@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 
 class SplashScreen extends StatelessWidget {
-  SplashScreenController controller = Get.put(SplashScreenController());
+  final SplashScreenController controller = Get.put(SplashScreenController());
 
   SplashScreen({super.key});
 

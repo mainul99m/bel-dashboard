@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class MainScreen extends StatelessWidget {
-  MainScreenController controller = Get.put(MainScreenController());
+  final MainScreenController controller = Get.put(MainScreenController());
   MainScreen({super.key});
 
   @override

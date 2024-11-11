@@ -4,6 +4,8 @@ import 'package:bel_dashboard/screens/main_screen.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../main.dart';
+
 class SplashScreenController extends GetxController {
 
   @override
@@ -13,7 +15,6 @@ class SplashScreenController extends GetxController {
   }
 
   initilizeApp() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
     var token = prefs.getString(SharedPrefsConstants.TOKEN);
 
     await Future.delayed(Duration(seconds: 1));

@@ -7,7 +7,7 @@ import '../data/side_menu_data.dart';
 import 'package:get/get.dart';
 
 class SideMenuWidget extends StatelessWidget {
-  MainScreenController controller = Get.find<MainScreenController>();
+  final MainScreenController controller = Get.find<MainScreenController>();
   SideMenuWidget({super.key});
 
   @override

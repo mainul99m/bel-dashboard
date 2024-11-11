@@ -1,5 +1,11 @@
+import 'package:bel_dashboard/constant/shared_prefs_constants.dart';
+import 'package:bel_dashboard/main.dart';
+import 'package:bel_dashboard/models/login_response_model.dart';
+import 'package:bel_dashboard/services/remote_service.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+import '../screens/main_screen.dart';
 
 
 class AuthenticatorController extends GetxController {
@@ -14,7 +20,7 @@ class AuthenticatorController extends GetxController {
     super.onClose();
   }
 
-  void login() {
+  void login() async{
     if(phoneNumberController.text.isEmpty || passwordController.text.isEmpty) {
       Get.snackbar(
         'Error',
@@ -25,7 +31,29 @@ class AuthenticatorController extends GetxController {
       );
       return;
     }
-    print('Email: ${phoneNumberController.text}');
-    print('Password: ${passwordController.text}');
+    final phoneNumber = phoneNumberController.text;
+    final password = passwordController.text;
+    LoginResponseModel? response = await RemoteService.login(phoneNumber, password);
+    if(response != null) {
+      Get.snackbar(
+        'Success',
+        'Login Successful',
+        snackPosition: SnackPosition.BOTTOM,
+        backgroundColor: Colors.green,
+        colorText: Colors.white,
+      );
+
+      prefs.setString(SharedPrefsConstants.TOKEN, response.token!);
+
+      Get.offAll(() => MainScreen());
+    } else {
+      Get.snackbar(
+        'Error',
+        'Login Failed',
+        snackPosition: SnackPosition.BOTTOM,
+        backgroundColor: Colors.red,
+        colorText: Colors.white,
+      );
+    }
   }
 }

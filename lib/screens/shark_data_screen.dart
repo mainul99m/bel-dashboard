@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class SharkDataScreen extends StatelessWidget {
-  SharkDataController controller = Get.put(SharkDataController());
+  final SharkDataController controller = Get.put(SharkDataController());
   SharkDataScreen({super.key});
 
   @override
