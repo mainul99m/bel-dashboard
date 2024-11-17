@@ -2,6 +2,7 @@ import 'package:bel_dashboard/constant/constant.dart';
 import 'package:bel_dashboard/controllers/shark_data_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:syncfusion_flutter_datagrid/datagrid.dart';
 
 class SharkDataScreen extends StatelessWidget {
   final SharkDataController controller = Get.put(SharkDataController());
@@ -20,15 +21,65 @@ class SharkDataScreen extends StatelessWidget {
                 child: pageHeading("Shark Data"),
               ),
             ),
-            Expanded(
-              flex: 10,
-              child: Container(
-                color: secondaryColor,
-              ),
+            Container(
+              color: secondaryColor,
+              child: dataViewer(),
             ),
           ],
         ),
       ),
+    );
+  }
+
+  Widget dataViewer(){
+    return Container(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Obx(()=>Text('Total Sharks: ${controller.count}')),
+
+            Obx(()=>Visibility(
+              visible: controller.count > 0,
+              child: SizedBox(
+                height: 400,
+                child: SfDataGrid(
+                  source: controller.employeeDataSource,
+                  columns: <GridColumn>[
+                    GridColumn(
+                      columnName: 'id',
+                      label: Container(
+                        padding: EdgeInsets.all(16.0),
+                        child: Text('ID'),
+                      )
+                    ),
+                    GridColumn(
+                        columnName: 'name',
+                        label: Container(
+                          padding: EdgeInsets.all(16.0),
+                          child: Text('Name jlasdfsa r'),
+                        )
+                    ),
+                    GridColumn(
+                        columnName: 'designation',
+                        label: Container(
+                          padding: EdgeInsets.all(16.0),
+                          child: Text('Designation'),
+                        )
+                    ),
+                    GridColumn(
+                        columnName: 'salary',
+                        label: Container(
+                          padding: EdgeInsets.all(16.0),
+                          child: Text('Salary'),
+                        )
+                    ),
+                  ]
+                ),
+              ),)
+            )
+          ],
+        )
     );
   }
 

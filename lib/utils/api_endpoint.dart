@@ -3,13 +3,14 @@ class ApiEndpoint {
   static final String imageUrl = 'https://images.bengalelasmolab.org/';
 
   static final _AuthEndpoint auth = _AuthEndpoint();
+  static final _GetDataEndpoint get = _GetDataEndpoint();
 }
 
 class _AuthEndpoint {
   final String login = "users/login";
 }
 
-class _DataEndpoint {
+class _GetDataEndpoint {
   final String shark = "sharks";
   final String ray = "rays";
   final String guitar = "guitars";

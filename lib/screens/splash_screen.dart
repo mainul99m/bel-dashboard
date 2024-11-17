@@ -2,7 +2,6 @@ import 'package:bel_dashboard/controllers/splash_screen_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
-
 class SplashScreen extends StatelessWidget {
   final SplashScreenController controller = Get.put(SplashScreenController());
 
