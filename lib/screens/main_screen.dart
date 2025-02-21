@@ -1,4 +1,5 @@
 import 'package:bel_dashboard/controllers/main_screen_controller.dart';
+import 'package:bel_dashboard/screens/ray_data_screen.dart';
 import 'package:bel_dashboard/screens/shark_data_screen.dart';
 import 'package:bel_dashboard/widgets/side_menu_widget.dart';
 import 'package:flutter/material.dart';
@@ -39,9 +40,7 @@ class MainScreen extends StatelessWidget {
       case 1:
         return SharkDataScreen();
       case 2:
-        return Container(
-          color: Colors.yellow,
-        );
+        return RayDataScreen();
     }
     return Container(
       color: Colors.blue,

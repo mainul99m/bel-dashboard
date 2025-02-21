@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:bel_dashboard/controllers/shark_data_controller.dart';
 import 'package:bel_dashboard/main.dart';
 import 'package:bel_dashboard/models/login_response_model.dart';
+import 'package:bel_dashboard/models/ray_data_model.dart';
 import 'package:bel_dashboard/models/shark_data_model.dart';
 import 'package:bel_dashboard/utils/api_endpoint.dart';
 import 'package:http/http.dart' as http;
@@ -90,5 +91,49 @@ class RemoteService {
     } catch (e) {
       print(e);
     }
+  }
+
+  static Future<RayDataModel?> getRays({int limit = 0}) async{
+    String limitParam = '';
+    if (limit > 0) {
+      limitParam = '?limit=$limit';
+    }
+    final url = ApiEndpoint.baseUrl + ApiEndpoint.get.ray + limitParam;
+
+    print(url);
+
+    final token = prefs.getString(SharedPrefsConstants.TOKEN);
+
+    try {
+      final response = await http.get(
+        Uri.parse(url),
+        headers: {
+          'Content-Type': 'application/json',
+          'Access-Control-Allow-Origin': '*',
+          'Access-Control-Allow-Credentials': 'true',
+          'Access-Control-Allow-Headers': 'Content-Type',
+          'Connection': 'keep-alive',
+          'Accept': '*/*',
+          'Authorization' : 'Bearer $token'
+        },
+      );
+
+        print(response.statusCode);
+
+        if (response.statusCode == 200) {
+          print(response.body);
+          return rayDataModelFromJson(response.body);
+        } else {
+          return null;
+        }
+      } on SocketException{
+        print('No Internet Connection');
+      } on TimeoutException {
+        print('Request Timed Out');
+      } on http.ClientException {
+        print('Client Exception');
+      } catch (e) {
+        print(e);
+      }
   }
 }
