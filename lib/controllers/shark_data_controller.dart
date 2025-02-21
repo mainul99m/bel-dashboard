@@ -8,10 +8,7 @@ import 'package:csv/csv.dart';
 import 'package:get/get.dart';
 import 'package:syncfusion_flutter_datagrid/datagrid.dart';
 import 'package:flutter/material.dart';
-import 'package:universal_html/html.dart';
 import 'package:url_launcher/url_launcher_string.dart';
-import 'package:flutter/material.dart';
-import 'package:syncfusion_flutter_datagrid_export/export.dart';
 
 import '../services/data_service.dart';
 
@@ -34,7 +31,6 @@ class SharkDataController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    // employeeDataSource = EmployeeDataSource(employees: employees);
     sharkDataSource = SharkDataSource(sharks: sharks);
     getData();
 
@@ -45,9 +41,6 @@ class SharkDataController extends GetxController {
   Future<void> getData() async {
     loading.value = true;
     SharkDataModel? data = await RemoteService.getSharks();
-    // await Future.delayed(Duration(seconds: 2));
-    // employees = getEmployees();
-    // employeeDataSource = EmployeeDataSource(employees: employees);
     count.value = data!.data!.sharks.length;
     sharks = data.data!.sharks;
     sharkDataSource = SharkDataSource(sharks: sharks);
@@ -137,7 +130,6 @@ class SharkDataController extends GetxController {
 
     DataService.saveCsv(data, 'sharks.csv');
   }
-
 
 
 }

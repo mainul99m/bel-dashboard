@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:bel_dashboard/models/shark_model.dart';
 
 SharkDataModel sharkDataModelFromJson(String str) => SharkDataModel.fromJson(json.decode(str));
