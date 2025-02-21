@@ -1,4 +1,5 @@
 import 'package:bel_dashboard/controllers/main_screen_controller.dart';
+import 'package:bel_dashboard/screens/guitar_data_screen.dart';
 import 'package:bel_dashboard/screens/ray_data_screen.dart';
 import 'package:bel_dashboard/screens/shark_data_screen.dart';
 import 'package:bel_dashboard/widgets/side_menu_widget.dart';
@@ -41,6 +42,8 @@ class MainScreen extends StatelessWidget {
         return SharkDataScreen();
       case 2:
         return RayDataScreen();
+      case 3:
+        return GuitarDataScreen();
     }
     return Container(
       color: Colors.blue,
