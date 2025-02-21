@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
-
 import 'package:bel_dashboard/controllers/shark_data_controller.dart';
 import 'package:bel_dashboard/main.dart';
 import 'package:bel_dashboard/models/login_response_model.dart';
@@ -50,8 +49,13 @@ class RemoteService {
   }
 
 
-  static Future<SharkDataModel?> getSharks() async {
-    final url = ApiEndpoint.baseUrl + ApiEndpoint.get.shark;
+  static Future<SharkDataModel?> getSharks({int limit = 0}) async {
+    String limitParam = '';
+    if (limit > 0) {
+      limitParam = '?limit=$limit';
+    }
+    final url = ApiEndpoint.baseUrl + ApiEndpoint.get.shark + limitParam;
+
     print(url);
 
     final token = prefs.getString(SharedPrefsConstants.TOKEN);
