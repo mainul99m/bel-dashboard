@@ -13,7 +13,7 @@ class SharkDataModel {
   int? total;
   int? pages;
   int? currentPage;
-  Data? data;
+  SharkData? data;
 
   SharkDataModel({
     required this.status,
@@ -31,7 +31,7 @@ class SharkDataModel {
     total: json["total"],
     pages: json["pages"],
     currentPage: json["currentPage"],
-    data: Data.fromJson(json["data"]),
+    data: SharkData.fromJson(json["data"]),
   );
 
   Map<String, dynamic> toJson() => {
@@ -44,14 +44,14 @@ class SharkDataModel {
   };
 }
 
-class Data {
+class SharkData {
   List<SharkModel> sharks;
 
-  Data({
+  SharkData({
     required this.sharks,
   });
 
-  factory Data.fromJson(Map<String, dynamic> json) => Data(
+  factory SharkData.fromJson(Map<String, dynamic> json) => SharkData(
     sharks: List<SharkModel>.from(json["sharks"].map((x) => SharkModel.fromJson(x))),
   );
 
