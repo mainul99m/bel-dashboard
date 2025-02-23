@@ -2,7 +2,6 @@ import 'package:bel_dashboard/constant/shared_prefs_constants.dart';
 import 'package:bel_dashboard/screens/authentication_screen.dart';
 import 'package:bel_dashboard/screens/main_screen.dart';
 import 'package:get/get.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 import '../main.dart';
 

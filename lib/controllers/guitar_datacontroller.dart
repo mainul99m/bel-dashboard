@@ -39,7 +39,7 @@ class GuitarDataController extends GetxController {
     if(!loading.value){
       loading.value = true;
       GuitarDataModel? data = await RemoteService.getGuitars(limit: 100000);
-      count.value = data!.data!.guitars.length;
+      count.value = data.data!.guitars.length;
       guitars = data.data!.guitars;
       guitarDataSource = GuitarDataSource(guitars: guitars);
     }

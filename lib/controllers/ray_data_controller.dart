@@ -6,7 +6,6 @@ import 'package:url_launcher/url_launcher_string.dart';
 import '../models/ray_data_model.dart';
 import '../models/ray_model.dart';
 import '../services/remote_service.dart';
-import '../services/data_service.dart';
 
 class RayDataController extends GetxController{
 
@@ -180,7 +179,7 @@ class RayDataSource extends DataGridSource{
         }
         return Container(
           alignment: Alignment.center,
-          padding: EdgeInsets.symmetric(horizontal: 16.0),
+          padding: const EdgeInsets.symmetric(horizontal: 16.0),
           child: Text(dataGridCell.value.toString()),
         );
       }).toList(),

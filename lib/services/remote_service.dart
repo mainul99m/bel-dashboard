@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
-import 'package:bel_dashboard/controllers/shark_data_controller.dart';
 import 'package:bel_dashboard/main.dart';
 import 'package:bel_dashboard/models/guitar_data_model.dart';
 import 'package:bel_dashboard/models/login_response_model.dart';
@@ -9,13 +8,11 @@ import 'package:bel_dashboard/models/ray_data_model.dart';
 import 'package:bel_dashboard/models/shark_data_model.dart';
 import 'package:bel_dashboard/utils/api_endpoint.dart';
 import 'package:http/http.dart' as http;
-
 import '../constant/shared_prefs_constants.dart';
 
 class RemoteService {
   static Future<LoginResponseModel?> login(String phoneNumber, String password) async {
     final url = ApiEndpoint.baseUrl + ApiEndpoint.auth.login;
-    print(url);
 
     final data = {
       'phone': phoneNumber,
@@ -40,14 +37,15 @@ class RemoteService {
         return null;
       }
     } on SocketException{
-      print('No Internet Connection');
+      // print('No Internet Connection');
     } on TimeoutException {
-      print('Request Timed Out');
+      // print('Request Timed Out');
     } on http.ClientException {
-      print('Client Exception');
+      // print('Client Exception');
     } catch (e) {
-      print(e);
+      // print(e);
     }
+    return null;
   }
 
 
@@ -58,7 +56,7 @@ class RemoteService {
     }
     final url = ApiEndpoint.baseUrl + ApiEndpoint.get.shark + limitParam;
 
-    print(url);
+    // print(url);
 
     final token = prefs.getString(SharedPrefsConstants.TOKEN);
 
@@ -76,7 +74,7 @@ class RemoteService {
         },
       );
 
-      print(response.statusCode);
+      // print(response.statusCode);
 
       if (response.statusCode == 200) {
         return sharkDataModelFromJson(response.body);
@@ -84,15 +82,19 @@ class RemoteService {
         return null;
       }
     } on SocketException{
-      print('No Internet Connection');
+      // print('No Internet Connection');
     } on TimeoutException {
-      print('Request Timed Out');
+      // print('Request Timed Out');
     } on http.ClientException {
-      print('Client Exception');
+      // print('Client Exception');
     } catch (e) {
-      print(e);
+      // print(e);
     }
+    return null;
   }
+
+  /// Get Rays
+  ///
 
   static Future<RayDataModel?> getRays({int limit = 0}) async{
     String limitParam = '';
@@ -101,7 +103,7 @@ class RemoteService {
     }
     final url = ApiEndpoint.baseUrl + ApiEndpoint.get.ray + limitParam;
 
-    print(url);
+    // print(url);
 
     final token = prefs.getString(SharedPrefsConstants.TOKEN);
 
@@ -119,7 +121,7 @@ class RemoteService {
         },
       );
 
-        print(response.statusCode);
+        // print(response.statusCode);
 
         if (response.statusCode == 200) {
           return rayDataModelFromJson(response.body);
@@ -127,14 +129,15 @@ class RemoteService {
           return null;
         }
       } on SocketException{
-        print('No Internet Connection');
+        // print('No Internet Connection');
       } on TimeoutException {
-        print('Request Timed Out');
+        // print('Request Timed Out');
       } on http.ClientException {
-        print('Client Exception');
+        // print('Client Exception');
       } catch (e) {
-        print(e);
+        // print(e);
       }
+      return null;
   }
 
 
@@ -145,7 +148,7 @@ class RemoteService {
     }
     final url = ApiEndpoint.baseUrl + ApiEndpoint.get.guitar + limitParam;
 
-    print(url);
+    // print(url);
 
     final token = prefs.getString(SharedPrefsConstants.TOKEN);
 
@@ -163,7 +166,7 @@ class RemoteService {
         },
       );
 
-      print(response.statusCode);
+      // print(response.statusCode);
 
       if (response.statusCode == 200) {
         return guitarDataModelFromJson(response.body);
@@ -171,16 +174,16 @@ class RemoteService {
         return GuitarDataModel(status: 'error', data: GuitarData(guitars: []));
       }
     } on SocketException{
-      print('No Internet Connection');
+      // print('No Internet Connection');
       return GuitarDataModel(status: 'error', data: GuitarData(guitars: []));
     } on TimeoutException {
-      print('Request Timed Out');
+      // print('Request Timed Out');
       return GuitarDataModel(status: 'error', data: GuitarData(guitars: []));
     } on http.ClientException {
-      print('Client Exception');
+      // print('Client Exception');
       return GuitarDataModel(status: 'error', data: GuitarData(guitars: []));
     } catch (e) {
-      print(e);
+      // print(e);
       return GuitarDataModel(status: 'error', data: GuitarData(guitars: []));
     }
   }
