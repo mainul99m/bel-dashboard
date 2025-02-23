@@ -69,6 +69,7 @@ class AuthenticationScreen extends StatelessWidget {
                       const SizedBox(height: 10),
                       TextFormField(
                         controller: controller.passwordController,
+                        obscureText: true,
                         decoration: InputDecoration(
                           labelText: 'Password',
                             border: OutlineInputBorder(

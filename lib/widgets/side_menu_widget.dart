@@ -25,6 +25,10 @@ class SideMenuWidget extends StatelessWidget {
   Widget buildMenuEntry(SideMenuData data, int index) {
     return Obx(()=>InkWell(
       onTap: () {
+        if(data.menu[index].title == 'Logout'){
+          controller.logOut();
+          return;
+        }
         controller.selectedSideMenuIndex.value = index;
       },
       child: Container(

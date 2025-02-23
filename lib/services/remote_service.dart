@@ -26,7 +26,7 @@ class RemoteService {
         Uri.parse(url),
         headers: {
           'Content-Type': 'application/json',
-          'Access-Control-Allow-Origin': '*',
+          'Access-Control-Allow-Origin': 'https://dashboard.bengleelasmolab.org',
           'Access-Control-Allow-Credentials': 'true',
           'Access-Control-Allow-Headers': 'Content-Type',
           'Connection': 'keep-alive',
